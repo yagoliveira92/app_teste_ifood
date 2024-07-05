@@ -1,4 +1,4 @@
-import 'package:app_teste_ifood/app/core/network/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/i_response.dart';
 
 class NoConnectionException extends Response implements Exception {
   get message => 'Sem conexão com a internet.';

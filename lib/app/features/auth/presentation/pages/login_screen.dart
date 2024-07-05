@@ -4,7 +4,7 @@ import 'package:app_teste_ifood/app/features/auth/presentation/manager/login_cub
 import 'package:app_teste_ifood/app/features/auth/presentation/widgets/email_field_widget.dart';
 import 'package:app_teste_ifood/app/features/auth/presentation/widgets/login_button_widget.dart';
 import 'package:app_teste_ifood/app/features/auth/presentation/widgets/password_field_widget.dart';
-import 'package:app_teste_ifood/app/features/home/presentation/pages/home_page_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,10 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePageScreen()),
-              (route) => false);
+          context.go('/forecast_weather');
         }
       },
       builder: (context, state) {

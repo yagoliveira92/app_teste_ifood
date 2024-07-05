@@ -1,5 +1,7 @@
-import 'package:app_teste_ifood/app/core/network/error/exceptions.dart';
-import 'package:app_teste_ifood/app/core/network/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/exceptions.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/i_response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_local_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/domain/repositories/i_auth_repository.dart';

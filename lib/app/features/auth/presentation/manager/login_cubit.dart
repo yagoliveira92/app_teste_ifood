@@ -1,7 +1,8 @@
+import 'package:app_teste_ifood/app/core/network/response_types/error/exceptions.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:app_teste_ifood/app/core/network/error/exceptions.dart';
-import 'package:app_teste_ifood/app/core/network/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
 import 'package:app_teste_ifood/app/features/auth/domain/use_cases/login_usecase.dart';
 
 part 'login_state.dart';
