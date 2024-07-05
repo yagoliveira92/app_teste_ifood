@@ -1,3 +1,4 @@
+import 'package:app_teste_ifood/app/features/current_weather/data/models/coordinator_model.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_city_entity.dart';
 
 class ForecastCityModel extends ForecastCityEntity {
