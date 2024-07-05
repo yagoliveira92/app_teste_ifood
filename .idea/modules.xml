@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app_teste_ifood.iml" filepath="$PROJECT_DIR$/app_teste_ifood.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/app_teste_ifood_android.iml" filepath="$PROJECT_DIR$/android/app_teste_ifood_android.iml" />
     </modules>
   </component>
 </project>
