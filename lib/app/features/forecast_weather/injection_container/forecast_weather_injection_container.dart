@@ -1,3 +1,4 @@
+import 'package:app_teste_ifood/app/core/injector_adapter/injection_adapter.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
 import 'package:app_teste_ifood/app/core/network/local_adapter/manager/i_local_data_manager.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/local_datasource/forecast_weather_local_datasource.dart';
@@ -6,37 +7,36 @@ import 'package:app_teste_ifood/app/features/forecast_weather/data/repositories/
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/repositories/i_forecast_weather_repository.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/use_cases/get_forecast_weather_usecase.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/presentation/manager/cubit/forecast_weather_cubit.dart';
-import 'package:get_it/get_it.dart';
 
 class ForecastWeatherInjectionContainer {
-  void call(GetIt dependency) {
+  void call(InjectionAdapter dependency) {
     dependency.registerFactory(
-      () => ForecastWeatherRemoteDataSource(
-          remoteDataManager: dependency<IRemoteDataManager>()),
+      ForecastWeatherRemoteDataSource(
+          remoteDataManager: dependency.get<IRemoteDataManager>()),
     );
 
     dependency.registerFactory(
       () => ForecastWeatherLocalDataSource(
-        localDataManager: dependency<ILocalDataManager>(),
+        localDataManager: dependency.get<ILocalDataManager>(),
       ),
     );
 
     dependency.registerFactory<IForecastWeatherRepository>(
-      () => ForecastWeatherRepository(
-        localDataSource: dependency<ForecastWeatherLocalDataSource>(),
-        remoteDataSource: dependency<ForecastWeatherRemoteDataSource>(),
+      ForecastWeatherRepository(
+        localDataSource: dependency.get<ForecastWeatherLocalDataSource>(),
+        remoteDataSource: dependency.get<ForecastWeatherRemoteDataSource>(),
       ),
     );
 
     dependency.registerFactory(
       () => GetForecastWeatherUseCase(
-        repository: dependency<IForecastWeatherRepository>(),
+        repository: dependency.get<IForecastWeatherRepository>(),
       ),
     );
 
     dependency.registerFactory(
       () => ForecastWeatherCubit(
-        getForecastWeatherUseCase: dependency<GetForecastWeatherUseCase>(),
+        getForecastWeatherUseCase: dependency.get<GetForecastWeatherUseCase>(),
       ),
     );
   }

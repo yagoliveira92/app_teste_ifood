@@ -11,7 +11,7 @@ class RemoteDataProvider implements IRemoteDataProvider {
     _dio = Dio(
       BaseOptions(baseUrl: appConstants.apiBaseUrl),
     )..interceptors.addAll([
-        RemoteDataInterceptor(),
+        RemoteDataInterceptor(apiKey: appConstants.apiKey),
         LogInterceptor(),
         TokenInterceptor(),
       ]);

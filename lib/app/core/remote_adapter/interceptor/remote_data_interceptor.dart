@@ -2,6 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class RemoteDataInterceptor extends Interceptor {
+  RemoteDataInterceptor({
+    required this.apiKey,
+  });
+
+  final String apiKey;
   @override
   void onRequest(
     RequestOptions options,
@@ -12,6 +17,7 @@ class RemoteDataInterceptor extends Interceptor {
       print('headers: ${options.headers}');
       print('data: ${options.data}');
     }
+    options.queryParameters.addAll({'appid': apiKey});
     return super.onRequest(options, handler);
   }
 

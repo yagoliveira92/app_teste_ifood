@@ -9,8 +9,10 @@ import 'package:app_teste_ifood/app/core/remote_adapter/provider/i_remote_data_p
 import 'package:app_teste_ifood/app/core/remote_adapter/provider/remote_data_provider.dart';
 import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_adapter.dart';
 import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_service.dart';
+import 'package:app_teste_ifood/app/features/current_weather/injection_container/current_weather_injection_container.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/injection_container/forecast_weather_injection_container.dart';
 
-const environment = Environments.production;
+const environment = String.fromEnvironment('ENVIRONMENT', defaultValue: 'DEV');
 final dependency = InjectionAdapter();
 
 Future<void> init() async {
@@ -24,7 +26,8 @@ Future<void> init() async {
 
   dependency.registerLazySingleton<IAppConstantsManager>(
     AppConstantsManager(
-      apiBaseUrl: environment.apiBaseUrl,
+      apiBaseUrl: EnvironmentsEnumMethods.envFromString(environment).apiBaseUrl,
+      apiKey: EnvironmentsEnumMethods.envFromString(environment).apiKey,
     ),
   );
 
@@ -39,4 +42,10 @@ Future<void> init() async {
       dataProvider: dependency.get<IRemoteDataProvider>(),
     ),
   );
+
+  final customWeatherInjectionContainer = CurrentWeatherInjectionContainer();
+  customWeatherInjectionContainer(dependency);
+
+  final forecastWeatherInjectionContainer = ForecastWeatherInjectionContainer();
+  forecastWeatherInjectionContainer(dependency);
 }

@@ -1,3 +1,4 @@
+import 'package:app_teste_ifood/app/core/injector_adapter/injection_adapter.dart';
 import 'package:app_teste_ifood/app/core/network/local_adapter/manager/i_local_data_manager.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
 import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/current_weather_local_datasource.dart';
@@ -6,30 +7,29 @@ import 'package:app_teste_ifood/app/features/current_weather/data/repositories/c
 import 'package:app_teste_ifood/app/features/current_weather/domain/repositories/i_current_weather_repository.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/use_cases/get_current_weather_usecase.dart';
 import 'package:app_teste_ifood/app/features/current_weather/presentation/manager/cubit/current_weather_cubit.dart';
-import 'package:get_it/get_it.dart';
 
 class CurrentWeatherInjectionContainer {
-  void call(GetIt dependency) {
+  void call(InjectionAdapter dependency) {
     dependency.registerFactory(
-      () => CurrentWeatherRemoteDataSource(
+      CurrentWeatherRemoteDataSource(
           remoteDataManager: dependency.get<IRemoteDataManager>()),
     );
 
     dependency.registerFactory(
-      () => CurrentWeatherLocalDataSource(
+      CurrentWeatherLocalDataSource(
         localDataManager: dependency.get<ILocalDataManager>(),
       ),
     );
 
     dependency.registerFactory<ICurrentWeatherRepository>(
-      () => CurrentWeatherRepository(
+      CurrentWeatherRepository(
         localDataSource: dependency.get<CurrentWeatherLocalDataSource>(),
         remoteDataSource: dependency.get<CurrentWeatherRemoteDataSource>(),
       ),
     );
 
     dependency.registerFactory(
-      () => GetCurrentWeatherUseCase(
+      GetCurrentWeatherUseCase(
         repository: dependency.get<ICurrentWeatherRepository>(),
       ),
     );
