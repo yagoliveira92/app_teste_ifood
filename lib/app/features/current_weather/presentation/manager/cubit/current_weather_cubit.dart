@@ -20,7 +20,9 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
     if (currentWeatherResult.result is Success) {
       emit(
         CurrentWeatherSuccess(
-            currentWeatherList: currentWeatherResult.currentWeatherList),
+          currentWeatherList: currentWeatherResult.currentWeatherList,
+          hasConnection: currentWeatherResult.result.hasConnection,
+        ),
       );
     } else {
       emit(CurrentWeatherError());

@@ -23,14 +23,14 @@ class CurrentWeatherError extends CurrentWeatherState {
 class CurrentWeatherSuccess extends CurrentWeatherState {
   const CurrentWeatherSuccess({
     required this.currentWeatherList,
-    this.noConnection = false,
+    this.hasConnection = true,
   });
 
   final List<CurrentWeatherEntity> currentWeatherList;
-  final bool noConnection;
+  final bool hasConnection;
   @override
   List<Object?> get props => [
         currentWeatherList,
-        noConnection,
+        hasConnection,
       ];
 }

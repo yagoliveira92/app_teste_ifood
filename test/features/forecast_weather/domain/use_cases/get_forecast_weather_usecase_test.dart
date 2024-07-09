@@ -1,7 +1,8 @@
-import 'package:app_test_cloudwalk/app/common/error/failure.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/repositories/i_forecast_weather_repository.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/use_cases/get_forecast_weather_usecase.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/repositories/i_forecast_weather_repository.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/use_cases/get_forecast_weather_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -22,14 +23,12 @@ void main() {
     test('Sucesso ao obter os dados do Forecast Weather', () async {
       when(() => repository.getForecastWeather(city: any(named: 'city')))
           .thenAnswer(
-        (_) async => (
-          forecastWeather: const ForecastWeatherEntity(),
-          error: NoFailure()
-        ),
+        (_) async =>
+            (forecastWeather: const ForecastWeatherEntity(), result: Success()),
       );
       final result = await useCase('aracaju');
       expect(result.forecastWeather, tMock);
-      expect(result.error, isA<NoFailure>());
+      expect(result.result, isA<Success>());
     });
 
     test('Falha ao obter os dados do Current Weather', () async {
@@ -37,12 +36,12 @@ void main() {
           .thenAnswer(
         (_) async => (
           forecastWeather: const ForecastWeatherEntity(),
-          error: GeneralFailure()
+          result: GeneralFailure()
         ),
       );
       final result = await useCase('aracaju');
       expect(result.forecastWeather, const ForecastWeatherEntity());
-      expect(result.error, isA<GeneralFailure>());
+      expect(result.result, isA<GeneralFailure>());
     });
   });
 }

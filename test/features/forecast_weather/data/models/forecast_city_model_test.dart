@@ -1,5 +1,5 @@
-import 'package:app_test_cloudwalk/app/features/forecast_weather/data/models/forecast_city_model.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/entities/forecast_city_entity.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/data/models/forecast_city_model.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_city_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

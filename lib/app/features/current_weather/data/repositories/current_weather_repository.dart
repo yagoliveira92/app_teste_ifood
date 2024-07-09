@@ -30,7 +30,12 @@ class CurrentWeatherRepository implements ICurrentWeatherRepository {
         final localData = await localDataSource.getCurrentWeather(city);
         if (localData.hasData) {
           final currentWeather = CurrentWeatherModel.fromJson(localData.data);
-          return (result: ConnectionFailure(), currentWeather: currentWeather);
+          return (
+            result: Success(
+              hasConnection: false,
+            ),
+            currentWeather: currentWeather
+          );
         }
       }
       return (

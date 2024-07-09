@@ -1,6 +1,4 @@
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
-import 'package:app_teste_ifood/app/core/remote_adapter/models/endpoint.dart';
-import 'package:app_teste_ifood/app/core/remote_adapter/models/methods_enum.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
 
 abstract class IAuthRemoteDataSource {

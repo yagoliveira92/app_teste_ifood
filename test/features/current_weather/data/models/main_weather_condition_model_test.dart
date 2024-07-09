@@ -1,5 +1,5 @@
-import 'package:app_test_cloudwalk/app/features/current_weather/data/models/main_weather_condition_model.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/domain/entities/main_weather_condition_entity.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/models/main_weather_condition_model.dart';
+import 'package:app_teste_ifood/app/features/current_weather/domain/entities/main_weather_condition_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

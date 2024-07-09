@@ -1,7 +1,7 @@
-import 'package:app_test_cloudwalk/app/common/remote_datasource/manager/i_remote_data_manager.dart';
-import 'package:app_test_cloudwalk/app/common/remote_datasource/models/endpoint.dart';
-import 'package:app_test_cloudwalk/app/common/remote_datasource/models/methods_enum.dart';
-import 'package:app_test_cloudwalk/app/common/remote_datasource/models/remote_data.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/models/endpoint.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/models/methods_enum.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -18,7 +18,7 @@ void main() {
   });
 
   final tLocalData = RemoteData();
-  final tEndpoint = Endpoint(method: Methods.post, path: '/app-cloudwalk.');
+  final tEndpoint = Endpoint(method: Methods.post, path: '/app-ifood.');
 
   test('should return a RemoteData when call a request', () async {
     when(

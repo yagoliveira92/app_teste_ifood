@@ -22,9 +22,14 @@ class ForecastWeatherError extends ForecastWeatherState {
 class ForecastWeatherSuccess extends ForecastWeatherState {
   const ForecastWeatherSuccess({
     required this.forecastWeatherEntity,
+    this.hasConnection = true,
   });
 
   final ForecastWeatherEntity forecastWeatherEntity;
+  final bool hasConnection;
   @override
-  List<Object> get props => [forecastWeatherEntity];
+  List<Object> get props => [
+        forecastWeatherEntity,
+        hasConnection,
+      ];
 }

@@ -13,7 +13,19 @@ class ForecastWeatherScreen extends StatefulWidget {
 class _ForecastWeatherScreenState extends State<ForecastWeatherScreen> {
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<ForecastWeatherCubit, ForecastWeatherState>(
+      BlocConsumer<ForecastWeatherCubit, ForecastWeatherState>(
+        listener: (context, state) {
+          if (state is ForecastWeatherSuccess) {
+            if (!state.hasConnection) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                      'Você está sem internet. Esta previsão pode estar desatualizada'),
+                ),
+              );
+            }
+          }
+        },
         builder: (context, state) {
           return switch (state) {
             ForecastWeatherLoading() => const Scaffold(

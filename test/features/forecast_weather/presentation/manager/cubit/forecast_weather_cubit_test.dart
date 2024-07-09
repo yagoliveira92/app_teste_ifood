@@ -1,7 +1,8 @@
-import 'package:app_test_cloudwalk/app/common/error/failure.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/domain/use_cases/get_forecast_weather_usecase.dart';
-import 'package:app_test_cloudwalk/app/features/forecast_weather/presentation/manager/cubit/forecast_weather_cubit.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/domain/use_cases/get_forecast_weather_usecase.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/presentation/manager/cubit/forecast_weather_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -37,7 +38,7 @@ void main() {
         ).thenAnswer(
           (_) async => (
             forecastWeather: tMock,
-            error: NoFailure(),
+            result: Success(),
           ),
         );
 
@@ -60,7 +61,7 @@ void main() {
         ).thenAnswer(
           (_) async => (
             forecastWeather: const ForecastWeatherEntity(),
-            error: GeneralFailure(),
+            result: GeneralFailure(),
           ),
         );
         return cubit;

@@ -1,4 +1,4 @@
-import 'package:app_test_cloudwalk/app/common/remote_datasource/provider/i_remote_data_provider.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/provider/i_remote_data_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -13,7 +13,7 @@ void main() {
   });
 
   final tResponse =
-      Response(requestOptions: RequestOptions(path: 'app-cloudwalk/'));
+      Response(requestOptions: RequestOptions(path: 'app-ifood/'));
 
   test('should return a Response when get remove data provider in endpoint',
       () async {

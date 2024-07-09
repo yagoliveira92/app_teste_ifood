@@ -31,7 +31,7 @@ class ForecastWeatherRepository implements IForecastWeatherRepository {
         if (localData.hasData) {
           final forecastWeather = ForecastWeatherModel.fromJson(localData.data);
           return (
-            result: ConnectionFailure(),
+            result: Success(hasConnection: false),
             forecastWeather: forecastWeather
           );
         }

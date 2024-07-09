@@ -13,34 +13,45 @@ class GetCurrentWeatherUseCase {
   Future<({Response result, List<CurrentWeatherEntity> currentWeatherList})>
       call() async {
     List<CurrentWeatherEntity> currentWeatherList = [];
+    bool hasConnection = true;
+
     final resultSilverstone = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.silverstone.getCity,
     );
     if (resultSilverstone.result is Success) {
+      hasConnection = resultSilverstone.result.hasConnection;
       currentWeatherList.add(resultSilverstone.currentWeather);
     }
     final resultSaoPaulo = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.saoPaulo.getCity,
     );
     if (resultSaoPaulo.result is Success) {
+      hasConnection = resultSaoPaulo.result.hasConnection;
       currentWeatherList.add(resultSaoPaulo.currentWeather);
     }
     final resultMelbourne = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.melbourne.getCity,
     );
     if (resultMelbourne.result is Success) {
+      hasConnection = resultMelbourne.result.hasConnection;
       currentWeatherList.add(resultMelbourne.currentWeather);
     }
     final resultMonteCarlo = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.monteCarlo.getCity,
     );
     if (resultMonteCarlo.result is Success) {
+      hasConnection = resultSaoPaulo.result.hasConnection;
       currentWeatherList.add(resultMonteCarlo.currentWeather);
     }
 
     if (currentWeatherList.isEmpty) {
       return (result: GeneralFailure(), currentWeatherList: currentWeatherList);
     }
-    return (result: Success(), currentWeatherList: currentWeatherList);
+    return (
+      result: Success(
+        hasConnection: hasConnection,
+      ),
+      currentWeatherList: currentWeatherList
+    );
   }
 }

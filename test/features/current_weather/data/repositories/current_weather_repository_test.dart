@@ -1,10 +1,11 @@
-import 'package:app_test_cloudwalk/app/common/error/failure.dart';
-import 'package:app_test_cloudwalk/app/common/local_datasource/models/local_data.dart';
-import 'package:app_test_cloudwalk/app/common/remote_datasource/models/remote_data.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/data/local_datasource/current_weather_local_datasource.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/data/remote_datasource/current_weather_remote_datasource.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/data/repositories/current_weather_repository.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/domain/entities/current_weather_entity.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/current_weather_local_datasource.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/remote_datasource/current_weather_remote_datasource.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/repositories/current_weather_repository.dart';
+import 'package:app_teste_ifood/app/features/current_weather/domain/entities/current_weather_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -87,7 +88,7 @@ void main() {
       final result = await repository.getCurrentWeather(city: 'aracaju');
       expect(
         result,
-        isA<({Failure error, CurrentWeatherEntity currentWeather})>(),
+        isA<({Success result, CurrentWeatherEntity currentWeather})>(),
       );
     });
 
@@ -104,11 +105,13 @@ void main() {
         (_) async => LocalData(data: tMapWidgets),
       );
 
-      final result = await repository.getCurrentWeather(city: 'aracaju');
+      final currentWeatherResponse =
+          await repository.getCurrentWeather(city: 'aracaju');
       expect(
-        result,
-        isA<({Failure error, CurrentWeatherEntity currentWeather})>(),
+        currentWeatherResponse,
+        isA<({Success result, CurrentWeatherEntity currentWeather})>(),
       );
+      expect(false, currentWeatherResponse.result.hasConnection);
     });
 
     test('deve retornar erro na obtenção dos dados remoto', () async {
@@ -121,7 +124,7 @@ void main() {
       final result = await repository.getCurrentWeather(city: 'aracaju');
       expect(
         result,
-        isA<({Failure error, CurrentWeatherEntity currentWeather})>(),
+        isA<({GeneralFailure result, CurrentWeatherEntity currentWeather})>(),
       );
     });
   });

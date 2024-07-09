@@ -1,5 +1,5 @@
-import 'package:app_test_cloudwalk/app/common/local_datasource/manager/i_local_data_manager.dart';
-import 'package:app_test_cloudwalk/app/common/local_datasource/models/local_data.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

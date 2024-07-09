@@ -1,7 +1,8 @@
-import 'package:app_test_cloudwalk/app/common/error/failure.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/domain/entities/current_weather_entity.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/domain/use_cases/get_current_weather_usecase.dart';
-import 'package:app_test_cloudwalk/app/features/current_weather/presentation/manager/cubit/current_weather_cubit.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
+import 'package:app_teste_ifood/app/features/current_weather/domain/entities/current_weather_entity.dart';
+import 'package:app_teste_ifood/app/features/current_weather/domain/use_cases/get_current_weather_usecase.dart';
+import 'package:app_teste_ifood/app/features/current_weather/presentation/manager/cubit/current_weather_cubit.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,7 +43,7 @@ void main() {
         ).thenAnswer(
           (_) async => (
             currentWeatherList: listCurrent,
-            error: NoFailure(),
+            result: Success(),
           ),
         );
 
@@ -65,7 +66,7 @@ void main() {
         ).thenAnswer(
           (_) async => (
             currentWeatherList: <CurrentWeatherEntity>[],
-            error: GeneralFailure(),
+            result: GeneralFailure(),
           ),
         );
         return cubit;
