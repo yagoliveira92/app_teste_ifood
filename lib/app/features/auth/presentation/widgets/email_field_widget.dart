@@ -4,10 +4,10 @@ import 'package:app_teste_ifood/app/core/validators/email_validator.dart';
 
 class EmailTextFieldWidget extends StatefulWidget {
   const EmailTextFieldWidget({
-    Key? key,
+    super.key,
     required this.validator,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final Function(String) validator;

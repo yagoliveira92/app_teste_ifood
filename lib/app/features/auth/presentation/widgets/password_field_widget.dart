@@ -4,10 +4,10 @@ import 'package:app_teste_ifood/app/core/validators/password_validator.dart';
 
 class PasswordTextFieldWidget extends StatefulWidget {
   const PasswordTextFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.validator,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final Function(String) validator;
