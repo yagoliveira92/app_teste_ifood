@@ -15,13 +15,20 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
 
   final IRemoteDataManager remoteDataManager;
 
+  // Para efeitos do Teste eu não fiz a comunicação com o backend, mantendo o
+  // Login e Senha fixos, retornando um token fixo.
   @override
   Future<RemoteData> login({
     required String email,
     required String password,
   }) async {
-    final endpoint = Endpoint(method: Methods.post, path: '/login');
-    return remoteDataManager.request(endpoint: endpoint);
+    // final endpoint = Endpoint(method: Methods.post, path: '/login');
+    // return remoteDataManager.request(endpoint: endpoint);
+    return RemoteData(
+      data: {'token': 'token_success'},
+      noConnection: false,
+      statusCode: 200,
+    );
   }
 
   @override

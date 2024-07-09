@@ -2,6 +2,7 @@ import 'package:app_teste_ifood/app/core/network/response_types/error/exceptions
 import 'package:app_teste_ifood/app/core/network/response_types/error/i_response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
+import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_local_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/domain/repositories/i_auth_repository.dart';
@@ -14,30 +15,39 @@ class AuthRepository implements IAuthRepository {
 
   final IAuthRemoteDataSource authRemoteDataSource;
   final IAuthLocalDatasource authLocalDatasource;
+
   @override
   Future<Response> login({
     required String email,
     required String password,
   }) async {
-    final response = await authRemoteDataSource.login(
-      email: email,
-      password: password,
-    );
-    if (response.isSuccess) {
-      await authLocalDatasource.savaToken(response.data!['token']);
-      return Success();
+    try {
+      final response = await authRemoteDataSource.login(
+        email: email,
+        password: password,
+      );
+      if (response.isSuccess) {
+        await authLocalDatasource.savaToken(response.data!['token']);
+        return Success();
+      }
+      if (response.noConnection) {
+        return NoConnectionException();
+      }
+      if (response.statusCode == 401) {
+        return UnauthorizedException();
+      }
+      return GeneralFailure(message: response.data);
+    } catch (e) {
+      return GeneralFailure(message: e.toString());
     }
-    if (response.noConnection) {
-      return NoConnectionException();
-    }
-    if (response.statusCode == 401) {
-      return UnauthorizedException();
-    }
-    return GeneralFailure(message: response.data);
   }
 
   @override
-  Future<void> forgotPassword({required String email}) async {
-    await authRemoteDataSource.forgotPassword(email: email);
+  Future<bool> checkToken() async {
+    final token = await authLocalDatasource.checkToken();
+    if (token == null || token.isEmpty) {
+      return false;
+    }
+    return true;
   }
 }

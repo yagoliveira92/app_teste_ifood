@@ -1,5 +1,6 @@
 import 'package:app_teste_ifood/app/core/network/response_types/error/exceptions.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
+import 'package:app_teste_ifood/app/features/auth/domain/use_cases/check_token_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
@@ -8,9 +9,22 @@ import 'package:app_teste_ifood/app/features/auth/domain/use_cases/login_usecase
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit({required this.loginUsecase}) : super(LoginInitial());
+  LoginCubit({
+    required this.checkTokenUsecase,
+    required this.loginUsecase,
+  }) : super(LoginInitial());
 
+  final CheckTokenUsecase checkTokenUsecase;
   final LoginUsecase loginUsecase;
+
+  Future<void> checkToken() async {
+    final response = await checkTokenUsecase();
+    if (response) {
+      emit(LoginHasLogged());
+    } else {
+      emit(LoginHasNotLogged());
+    }
+  }
 
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());

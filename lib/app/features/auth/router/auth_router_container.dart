@@ -1,3 +1,4 @@
+import 'package:app_teste_ifood/app/features/auth/domain/use_cases/check_token_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app_teste_ifood/app/core/containers/injection_container.dart';
@@ -10,8 +11,10 @@ final getRouterContainer = [
   GoRoute(
     path: '/',
     builder: (context, state) => BlocProvider<LoginCubit>(
-      create: (context) =>
-          LoginCubit(loginUsecase: dependency.get<LoginUsecase>()),
+      create: (context) => LoginCubit(
+        loginUsecase: dependency.get<LoginUsecase>(),
+        checkTokenUsecase: dependency.get<CheckTokenUsecase>(),
+      )..checkToken(),
       child: const SplashScreen(),
     ),
   ),
@@ -20,6 +23,7 @@ final getRouterContainer = [
     builder: (context, state) => BlocProvider<LoginCubit>(
       create: (context) => LoginCubit(
         loginUsecase: dependency.get<LoginUsecase>(),
+        checkTokenUsecase: dependency.get<CheckTokenUsecase>(),
       ),
       child: const LoginScreen(),
     ),

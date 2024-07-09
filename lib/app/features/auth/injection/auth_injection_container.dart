@@ -5,6 +5,7 @@ import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_local_d
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/data/repositories/auth_repository.dart';
 import 'package:app_teste_ifood/app/features/auth/domain/repositories/i_auth_repository.dart';
+import 'package:app_teste_ifood/app/features/auth/domain/use_cases/check_token_usecase.dart';
 import 'package:app_teste_ifood/app/features/auth/domain/use_cases/login_usecase.dart';
 import 'package:app_teste_ifood/app/features/auth/presentation/manager/login_cubit.dart';
 
@@ -29,14 +30,21 @@ class AuthInjectionContainer {
     );
 
     dependency.registerFactory(
-      () => LoginUsecase(
+      LoginUsecase(
         authRepository: dependency.get<IAuthRepository>(),
       ),
     );
 
-    dependency.registerFactory(
-      () => LoginCubit(
+    dependency.registerFactory<CheckTokenUsecase>(
+      CheckTokenUsecase(
+        authRepository: dependency.get<IAuthRepository>(),
+      ),
+    );
+
+    dependency.registerFactory<LoginCubit>(
+      LoginCubit(
         loginUsecase: dependency.get<LoginUsecase>(),
+        checkTokenUsecase: dependency.get<CheckTokenUsecase>(),
       ),
     );
   }

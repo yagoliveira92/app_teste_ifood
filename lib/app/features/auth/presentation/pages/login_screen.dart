@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          context.go('/forecast_weather');
+          context.go('/current-weather');
         }
       },
       builder: (context, state) {

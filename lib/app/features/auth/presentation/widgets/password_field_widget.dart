@@ -20,6 +20,7 @@ class PasswordTextFieldWidget extends StatefulWidget {
 class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
   FocusNode? focusNode;
   static final _keyPassword = GlobalKey();
+  bool _obscureText = true;
 
   @override
   void initState() {
@@ -46,8 +47,8 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
         ),
         TextFormField(
           style: GoogleFonts.montserrat(),
+          obscureText: _obscureText,
           onChanged: widget.validator,
-          maxLength: 20,
           focusNode: focusNode,
           key: _keyPassword,
           keyboardType: TextInputType.visiblePassword,
@@ -56,11 +57,21 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
             return validate();
           },
           controller: widget.controller,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.lock),
-            focusedBorder: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(),
-            errorBorder: OutlineInputBorder(),
+          decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.lock),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            ),
+            focusedBorder: const OutlineInputBorder(),
+            enabledBorder: const OutlineInputBorder(),
+            errorBorder: const OutlineInputBorder(),
             filled: true,
             fillColor: Colors.white,
           ),

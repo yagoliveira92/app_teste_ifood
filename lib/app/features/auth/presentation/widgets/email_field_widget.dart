@@ -47,7 +47,7 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
           onChanged: widget.validator,
           style: GoogleFonts.montserrat(),
           focusNode: focusNode,
-          maxLength: 20,
+          maxLength: 50,
           key: _keyEmail,
           keyboardType: TextInputType.emailAddress,
           textCapitalization: TextCapitalization.none,
