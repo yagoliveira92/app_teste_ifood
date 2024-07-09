@@ -1,11 +1,13 @@
 import 'package:app_teste_ifood/app/core/containers/injection_container.dart';
 import 'package:app_teste_ifood/app/features/current_weather/presentation/manager/cubit/current_weather_cubit.dart';
 import 'package:app_teste_ifood/app/features/current_weather/presentation/widgets/city_card_current_weather_widget.dart';
+import 'package:app_teste_ifood/app/features/current_weather/presentation/widgets/current_weather_loading_widget.dart';
 import 'package:app_teste_ifood/app/features/current_weather/presentation/widgets/search_city_delegate.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/presentation/manager/cubit/forecast_weather_cubit.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/presentation/pages/forecast_weather_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CurrentWeatherScreen extends StatefulWidget {
   const CurrentWeatherScreen({super.key});
@@ -20,30 +22,8 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
       BlocBuilder<CurrentWeatherCubit, CurrentWeatherState>(
         builder: (context, state) {
           return switch (state) {
-            CurrentWeatherInitial() => const Scaffold(
-                body: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],
-                ),
-              ),
-            CurrentWeatherLoading() => const Scaffold(
-                body: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],
-                ),
-              ),
+            CurrentWeatherInitial() => const CurrentWeatherLoadingWidget(),
+            CurrentWeatherLoading() => const CurrentWeatherLoadingWidget(),
             CurrentWeatherSuccess() => Scaffold(
                 appBar: AppBar(
                   title: const Text('Current Weather'),
@@ -62,29 +42,21 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                     ),
                   ],
                 ),
-                body: ListView.builder(
-                  itemCount: state.currentWeatherList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CityCardCurrentWeatherWidget(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                BlocProvider<ForecastWeatherCubit>(
-                              create: (context) => dependency
-                                  .get<ForecastWeatherCubit>()
-                                ..getForecast(
-                                    city:
-                                        state.currentWeatherList[index].name ??
-                                            ''),
-                              child: const ForecastWeatherScreen(),
-                            ),
-                          ),
-                        );
-                      },
-                      currentWeather: state.currentWeatherList[index],
-                    );
-                  },
+                body: RefreshIndicator(
+                  onRefresh: () =>
+                      context.read<CurrentWeatherCubit>().getCurrentWeather(),
+                  child: ListView.builder(
+                    itemCount: state.currentWeatherList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CityCardCurrentWeatherWidget(
+                        onTap: () {
+                          context.push(
+                              '/forecast-weather/${state.currentWeatherList[index].name}');
+                        },
+                        currentWeather: state.currentWeatherList[index],
+                      );
+                    },
+                  ),
                 ),
               ),
             CurrentWeatherError() => const Scaffold(

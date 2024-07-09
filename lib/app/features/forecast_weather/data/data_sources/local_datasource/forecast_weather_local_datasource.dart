@@ -1,5 +1,5 @@
-import 'package:app_teste_ifood/app/core/network/local_adapter/manager/i_local_data_manager.dart';
-import 'package:app_teste_ifood/app/core/network/local_adapter/models/local_data.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/local_datasource/i_forecast_weather_local_datasource.dart';
 
 class ForecastWeatherLocalDataSource

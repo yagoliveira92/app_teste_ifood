@@ -1,5 +1,5 @@
 import 'package:app_teste_ifood/app/core/injector_adapter/injection_adapter.dart';
-import 'package:app_teste_ifood/app/core/network/local_adapter/manager/i_local_data_manager.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
 import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/current_weather_local_datasource.dart';
 import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/i_current_weather_local_datasource.dart';

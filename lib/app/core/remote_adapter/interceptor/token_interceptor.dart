@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:app_teste_ifood/app/core/containers/injection_container.dart';
-import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_service.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage/secure_storage_service.dart';
 
 class TokenInterceptor extends Interceptor {
   TokenInterceptor({

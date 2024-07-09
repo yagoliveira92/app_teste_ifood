@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_service.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage/secure_storage_service.dart';
 
 class SecureStorageAdapter implements SecureStorageService {
   final _secureStorage = const FlutterSecureStorage();

@@ -1,12 +1,15 @@
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:app_teste_ifood/app/core/containers/injection_container.dart'
     as injection;
 import 'package:app_teste_ifood/app/core/containers/router_container.dart'
     as router;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   injection.init();
+  final localDataManager = injection.dependency.get<ILocalDataManager>();
+  await localDataManager.start();
   runApp(const MyApp());
 }
 

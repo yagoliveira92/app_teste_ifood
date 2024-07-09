@@ -16,25 +16,25 @@ class GetCurrentWeatherUseCase {
     final resultSilverstone = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.silverstone.getCity,
     );
-    if (resultSilverstone is Success) {
+    if (resultSilverstone.result is Success) {
       currentWeatherList.add(resultSilverstone.currentWeather);
     }
     final resultSaoPaulo = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.saoPaulo.getCity,
     );
-    if (resultSaoPaulo is Success) {
+    if (resultSaoPaulo.result is Success) {
       currentWeatherList.add(resultSaoPaulo.currentWeather);
     }
     final resultMelbourne = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.melbourne.getCity,
     );
-    if (resultMelbourne is Success) {
+    if (resultMelbourne.result is Success) {
       currentWeatherList.add(resultMelbourne.currentWeather);
     }
     final resultMonteCarlo = await repository.getCurrentWeather(
       city: CitiesConcertWeatherEnum.monteCarlo.getCity,
     );
-    if (resultMonteCarlo is Success) {
+    if (resultMonteCarlo.result is Success) {
       currentWeatherList.add(resultMonteCarlo.currentWeather);
     }
 

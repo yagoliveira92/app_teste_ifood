@@ -1,4 +1,4 @@
-import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_service.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage/secure_storage_service.dart';
 
 abstract class IAuthLocalDatasource {
   Future<void> savaToken(String token);

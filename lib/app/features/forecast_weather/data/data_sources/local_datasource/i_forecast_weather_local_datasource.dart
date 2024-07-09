@@ -1,4 +1,4 @@
-import 'package:app_teste_ifood/app/core/network/local_adapter/models/local_data.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
 
 abstract class IForecastWeatherLocalDataSource {
   Future<LocalData> getForecastWeather(String cityName);

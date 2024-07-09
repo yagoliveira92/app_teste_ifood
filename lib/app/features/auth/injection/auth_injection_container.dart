@@ -1,6 +1,6 @@
 import 'package:app_teste_ifood/app/core/injector_adapter/injection_adapter.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
-import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage_service.dart';
+import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage/secure_storage_service.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_local_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/data/data_sources/auth_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/auth/data/repositories/auth_repository.dart';

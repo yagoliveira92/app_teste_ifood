@@ -16,10 +16,12 @@ class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
 
   Future<void> getCurrentWeather() async {
     emit(CurrentWeatherLoading());
-    final result = await getCurrentWeatherUsecase();
-    if (result is Success) {
+    final currentWeatherResult = await getCurrentWeatherUsecase();
+    if (currentWeatherResult.result is Success) {
       emit(
-          CurrentWeatherSuccess(currentWeatherList: result.currentWeatherList));
+        CurrentWeatherSuccess(
+            currentWeatherList: currentWeatherResult.currentWeatherList),
+      );
     } else {
       emit(CurrentWeatherError());
     }

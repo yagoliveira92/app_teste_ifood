@@ -15,7 +15,7 @@ class LocalDataManager implements ILocalDataManager {
   Future<void> start() async {
     final applicationDirectory = await getApplicationDocumentsDirectory();
     await applicationDirectory.create();
-    final path = join(applicationDirectory.path, 'test_app_cloudwalk.db');
+    final path = join(applicationDirectory.path, 'app_teste_ifood.db');
     _database = await databaseFactoryIo.openDatabase(path);
   }
 
