@@ -17,21 +17,26 @@
 - [CI/CD](#cicd)
 
 ## Início
-Este projeto segue o Clean Architecture com TDD exemplificada pelo [Resocoder](https://resocoder.com/flutter-clean-architecture-tdd/), assim como o [BloC](https://bloclibrary.dev/) para gestão de estado.
+Este projeto segue o Clean Architecture com TDD exemplificada pelo [Resocoder](https://resocoder.com/flutter-clean-architecture-tdd/), assim como o [Cubit](https://bloclibrary.dev/) para gestão de estado.
 
-Demais dúvidas pode perguntar à um membro da equipe ou consultar a [documentação oficial](https://flutter.io/docs/get-started/install).
+Demais dúvidas pode abrir uma issue ou consultar a [documentação oficial](https://flutter.io/docs/get-started/install).
 
 ## Build
-Para gerar o build do projeto, basta executar o comando:
+Para gerar o build do projeto, você precisa de uma chave de API da [OpenWeather](https://openweathermap.org/). 
+Com ela em mãos, você pode gerar o build com o comando:
 ```bash
-flutter build apk
+flutter build apk --dart-define=WEATHER_API_KEY=sua_chave_aqui
 ```
 
 ## Run
-Para rodar o projeto, basta executar o comando:
+Para executar o projeto, você também irá precisar da chave de API da [OpenWeather](https://openweathermap.org/).
+Com ela em mãos, você pode executar o projeto com o comando:
+
 ```bash
-flutter run
+flutter run --dart-define=WEATHER_API_KEY=sua_chave_aqui
 ```
+Não há integração com um serviço de autenticação. Para acessar o aplicativo, basta colocar um email e senha qualquer.
+e clicar em "Entrar".
 
 ## Packages e Dependências
 
