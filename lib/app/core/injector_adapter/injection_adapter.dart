@@ -2,7 +2,9 @@ import 'package:get_it/get_it.dart';
 import 'package:app_teste_ifood/app/core/injector_adapter/injection_service.dart';
 
 class InjectionAdapter implements InjectionService {
-  final GetIt _getIt = GetIt.instance;
+  const InjectionAdapter(this._getIt);
+
+  final GetIt _getIt;
 
   @override
   void registerFactory<T extends Object>(T instance) {

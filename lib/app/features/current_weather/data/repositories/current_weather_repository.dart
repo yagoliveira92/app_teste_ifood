@@ -1,9 +1,9 @@
 import 'package:app_teste_ifood/app/core/network/response_types/error/i_response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
-import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/i_current_weather_local_datasource.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/current_weather_local_datasource.dart';
 import 'package:app_teste_ifood/app/features/current_weather/data/models/current_weather_model.dart';
-import 'package:app_teste_ifood/app/features/current_weather/data/remote_datasource/i_current_weather_remote_datasource.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/remote_datasource/current_weather_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/entities/current_weather_entity.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/repositories/i_current_weather_repository.dart';
 

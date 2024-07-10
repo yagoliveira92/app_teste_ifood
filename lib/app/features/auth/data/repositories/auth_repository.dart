@@ -35,7 +35,7 @@ class AuthRepository implements IAuthRepository {
       if (response.statusCode == 401) {
         return UnauthorizedException();
       }
-      return GeneralFailure(message: response.data);
+      return GeneralFailure(message: response.data['error']);
     } catch (e) {
       return GeneralFailure(message: e.toString());
     }

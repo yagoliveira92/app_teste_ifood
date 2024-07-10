@@ -1,8 +1,8 @@
 import 'package:app_teste_ifood/app/core/network/response_types/error/i_response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/error/response.dart';
 import 'package:app_teste_ifood/app/core/network/response_types/success/success.dart';
-import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/local_datasource/i_forecast_weather_local_datasource.dart';
-import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/remote_datasource/i_forecast_weather_remote_datasource.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/local_datasource/forecast_weather_local_datasource.dart';
+import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/remote_datasource/forecast_weather_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/data/models/forecast_weather_model.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/repositories/i_forecast_weather_repository.dart';

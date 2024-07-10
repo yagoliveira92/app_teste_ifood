@@ -2,7 +2,10 @@ import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_ma
 import 'package:app_teste_ifood/app/core/remote_adapter/models/endpoint.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/methods_enum.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
-import 'package:app_teste_ifood/app/features/current_weather/data/remote_datasource/i_current_weather_remote_datasource.dart';
+
+abstract class ICurrentWeatherRemoteDataSource {
+  Future<RemoteData> getCurrentWeather({required String city});
+}
 
 class CurrentWeatherRemoteDataSource
     implements ICurrentWeatherRemoteDataSource {

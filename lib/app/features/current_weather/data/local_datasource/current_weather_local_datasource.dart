@@ -1,6 +1,10 @@
 import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
 import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
-import 'package:app_teste_ifood/app/features/current_weather/data/local_datasource/i_current_weather_local_datasource.dart';
+
+abstract class ICurrentWeatherLocalDataSource {
+  Future<LocalData> getCurrentWeather(String cityName);
+  Future<void> saveCurrentWeather(String cityName, Map<String, dynamic> data);
+}
 
 class CurrentWeatherLocalDataSource implements ICurrentWeatherLocalDataSource {
   const CurrentWeatherLocalDataSource({

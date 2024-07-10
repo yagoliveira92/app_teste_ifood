@@ -12,13 +12,19 @@ import 'package:app_teste_ifood/app/core/storage_adapter/secure_storage/secure_s
 import 'package:app_teste_ifood/app/features/auth/injection/auth_injection_container.dart';
 import 'package:app_teste_ifood/app/features/current_weather/injection_container/current_weather_injection_container.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/injection_container/forecast_weather_injection_container.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
 
 const environment = String.fromEnvironment('ENVIRONMENT', defaultValue: 'DEV');
-final dependency = InjectionAdapter();
+const secureStorageInstance = FlutterSecureStorage();
+final getIt = GetIt.instance;
+final dependency = InjectionAdapter(getIt);
 
 Future<void> init() async {
   dependency.registerLazySingleton<SecureStorageService>(
-    SecureStorageAdapter(),
+    const SecureStorageAdapter(
+      secureStorageInstance,
+    ),
   );
 
   dependency.registerLazySingleton<ILocalDataManager>(
