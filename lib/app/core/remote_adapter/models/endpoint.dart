@@ -12,6 +12,6 @@ class Endpoint {
   final Methods method;
   final String path;
   final bool isFormUrlEncoded;
-  final Map<String, dynamic>? query;
+  final Map<String, String>? query;
   final Map<String, dynamic>? data;
 }

@@ -1,13 +1,13 @@
 enum EnvironmentEnum {
   production(
     type: 'production',
-    apiBaseUrl: 'https://api.openweathermap.org/data/2.5/',
-    apiKey: String.fromEnvironment('WEATHER_API_KEY'),
+    apiBaseUrl: 'api.openweathermap.org',
+    apiKey: '9dd2d5523676b81c6b39eebc387044d7',
   ),
   development(
     type: 'development',
-    apiBaseUrl: 'https://api.openweathermap.org/data/2.5/',
-    apiKey: String.fromEnvironment('WEATHER_API_KEY'),
+    apiBaseUrl: 'api.openweathermap.org',
+    apiKey: '9dd2d5523676b81c6b39eebc387044d7',
   );
 
   const EnvironmentEnum({
