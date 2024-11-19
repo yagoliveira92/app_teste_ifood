@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart';
 
 abstract class IRemoteDataProvider {
   void configureRequest({
@@ -7,7 +7,7 @@ abstract class IRemoteDataProvider {
 
   Future<Response?> get({
     required String path,
-    Map<String, dynamic>? query,
+    Map<String, String>? query,
   });
 
   Future<Response?> post({

@@ -6,6 +6,7 @@ import 'package:app_teste_ifood/app/features/current_weather/data/models/current
 import 'package:app_teste_ifood/app/features/current_weather/data/remote_datasource/current_weather_remote_datasource.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/entities/current_weather_entity.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/repositories/i_current_weather_repository.dart';
+import 'package:flutter/foundation.dart';
 
 class CurrentWeatherRepository implements ICurrentWeatherRepository {
   final ICurrentWeatherRemoteDataSource remoteDataSource;
@@ -23,7 +24,9 @@ class CurrentWeatherRepository implements ICurrentWeatherRepository {
       final response = await remoteDataSource.getCurrentWeather(city: city);
       if (response.isSuccess) {
         final currentWeather = CurrentWeatherModel.fromJson(response.data);
-        await localDataSource.saveCurrentWeather(city, response.data);
+        if (!kIsWeb) {
+          await localDataSource.saveCurrentWeather(city, response.data);
+        }
         return (result: Success(), currentWeather: currentWeather);
       }
       if (response.noConnection) {

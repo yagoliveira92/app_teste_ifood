@@ -20,6 +20,9 @@ mixin ConnectionManager implements IConnectionManager {
   @override
   Future<bool> get hasNetworkConnection async {
     try {
+      if (kIsWeb) {
+        return true;
+      }
       final result = await InternetAddress.lookup('cultivointeligente.com.br');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } catch (_) {

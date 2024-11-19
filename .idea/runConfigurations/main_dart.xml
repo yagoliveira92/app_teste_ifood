@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--dart-define=WEATHER_API_KEY=349384d8b9240cf6a4146ceb060a032c" />
+    <option name="additionalArgs" value="--dart-define=WEATHER_API_KEY=9dd2d5523676b81c6b39eebc387044d7" />
     <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
     <method v="2" />
   </configuration>

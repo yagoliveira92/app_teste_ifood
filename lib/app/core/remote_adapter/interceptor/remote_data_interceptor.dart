@@ -1,47 +1,45 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
+import 'dart:io';
+import 'package:http_interceptor/http_interceptor.dart';
 
-class RemoteDataInterceptor extends Interceptor {
+class RemoteDataInterceptor extends InterceptorContract {
   RemoteDataInterceptor({
     required this.apiKey,
   });
 
   final String apiKey;
+
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
-    if (kDebugMode) {
-      print('${options.method} --> ${options.path}');
-      print('headers: ${options.headers}');
-      print('data: ${options.data}');
-    }
-    options.queryParameters.addAll({'appid': apiKey});
-    return super.onRequest(options, handler);
+  Future<BaseRequest> interceptRequest({
+    required BaseRequest request,
+  }) async {
+    final Map<String, String> headers = Map.from(request.headers);
+    headers[HttpHeaders.contentTypeHeader] = 'application/json';
+    final queryParameters = request.url.queryParameters;
+    final newRequest = request.copyWith(
+      url: request.url.replace(
+        queryParameters: {
+          ...queryParameters,
+          'appid': apiKey,
+        },
+      ),
+      headers: headers,
+    );
+    print('----- Request -----');
+    print(newRequest.toString());
+    print(newRequest.headers.toString());
+    return newRequest;
   }
 
   @override
-  Future<dynamic> onResponse(
-    Response response,
-    ResponseInterceptorHandler handler,
-  ) async {
-    if (kDebugMode) {
-      print(
-        'SUCCESS ${response.statusCode} <-- ${response.requestOptions.path}',
-      );
-      print('body: ${response.data}');
+  Future<BaseResponse> interceptResponse({
+    required BaseResponse response,
+  }) async {
+    log('----- Response -----');
+    log('Code: ${response.statusCode}');
+    if (response is Response) {
+      log((response).body);
     }
-    return super.onResponse(response, handler);
-  }
-
-  @override
-  Future<dynamic> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
-    if (kDebugMode) {
-      print('ERROR ${err.response?.statusCode} <-- ${err.requestOptions.path}');
-      print('body: ${err.response?.data}');
-    }
-    return super.onError(err, handler);
+    return response;
   }
 }

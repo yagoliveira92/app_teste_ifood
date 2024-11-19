@@ -6,6 +6,7 @@ import 'package:app_teste_ifood/app/features/forecast_weather/data/data_sources/
 import 'package:app_teste_ifood/app/features/forecast_weather/data/models/forecast_weather_model.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/entities/forecast_weather_entity.dart';
 import 'package:app_teste_ifood/app/features/forecast_weather/domain/repositories/i_forecast_weather_repository.dart';
+import 'package:flutter/foundation.dart';
 
 class ForecastWeatherRepository implements IForecastWeatherRepository {
   final IForecastWeatherRemoteDataSource remoteDataSource;
@@ -23,7 +24,9 @@ class ForecastWeatherRepository implements IForecastWeatherRepository {
       final response = await remoteDataSource.getForecastWeather(city: city);
       if (response.isSuccess) {
         final forecastWeather = ForecastWeatherModel.fromJson(response.data);
-        await localDataSource.saveForecastWeather(city, response.data);
+        if (!kIsWeb) {
+          await localDataSource.saveForecastWeather(city, response.data);
+        }
         return (result: Success(), forecastWeather: forecastWeather);
       }
       if (response.noConnection) {

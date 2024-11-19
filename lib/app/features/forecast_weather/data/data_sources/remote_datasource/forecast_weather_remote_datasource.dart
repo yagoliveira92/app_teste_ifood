@@ -21,8 +21,9 @@ class ForecastWeatherRemoteDataSource
       method: Methods.get,
       query: {
         'units': 'metric',
+        'q': city,
       },
-      path: '/forecast?q=$city',
+      path: '/forecast',
     );
     return remoteDataManager.request(endpoint: endpoint);
   }

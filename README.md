@@ -1,5 +1,5 @@
 <p align="center">
-   App Weather.
+   Weather App.
    <br>
     <p align="center">
       <img src="https://img.shields.io/badge/flutter-3.22.1-blue" />

@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:app_teste_ifood/app/core/network/connection/connection_manager.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/manager/i_remote_data_manager.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/endpoint.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/methods_enum.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/models/remote_data.dart';
 import 'package:app_teste_ifood/app/core/remote_adapter/provider/i_remote_data_provider.dart';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart';
 
 class RemoteDataManager with ConnectionManager implements IRemoteDataManager {
   RemoteDataManager({
@@ -20,9 +22,9 @@ class RemoteDataManager with ConnectionManager implements IRemoteDataManager {
 
   Future<RemoteData> _executeRequest({required Endpoint endpoint}) async {
     if (await hasNetworkConnection) {
-      _dataProvider.configureRequest(
-        isFormUrlEncoded: endpoint.isFormUrlEncoded,
-      );
+      // _dataProvider.configureRequest(
+      //   isFormUrlEncoded: endpoint.isFormUrlEncoded,
+      // );
       Response? response;
       switch (endpoint.method) {
         case Methods.get:
@@ -61,7 +63,7 @@ class RemoteDataManager with ConnectionManager implements IRemoteDataManager {
           break;
       }
       return RemoteData(
-        data: response?.data,
+        data: jsonDecode(response!.body) as Map<String, dynamic>,
         statusCode: response?.statusCode,
       );
     }
