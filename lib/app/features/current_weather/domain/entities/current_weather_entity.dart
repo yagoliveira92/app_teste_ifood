@@ -1,10 +1,15 @@
 import 'package:app_teste_ifood/app/features/current_weather/domain/entities/coordinator_entity.dart';
 import 'package:app_teste_ifood/app/features/current_weather/domain/entities/weather_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:isar/isar.dart';
 
 import 'main_weather_condition_entity.dart';
 
+part 'current_weather_entity.g.dart';
+
+@Collection(ignore: {'props'})
 class CurrentWeatherEntity extends Equatable {
+  final Id id = Isar.autoIncrement;
   final CoordinatorEntity? coord;
   final List<WeatherEntity>? weatherEntities;
   final MainWeatherCondiditonEntity? main;

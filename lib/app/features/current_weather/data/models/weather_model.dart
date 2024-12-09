@@ -2,7 +2,6 @@ import 'package:app_teste_ifood/app/features/current_weather/domain/entities/wea
 
 class WeatherModel extends WeatherEntity {
   const WeatherModel({
-    required super.id,
     required super.main,
     required super.description,
     required super.icon,
@@ -10,7 +9,6 @@ class WeatherModel extends WeatherEntity {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
-      id: json['id'],
       main: json['main'],
       description: json['description'],
       icon: json['icon'],

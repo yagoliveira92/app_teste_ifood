@@ -1,9 +1,10 @@
 import 'package:app_teste_ifood/app/core/storage_adapter/local_database/manager/i_local_data_manager.dart';
 import 'package:app_teste_ifood/app/core/storage_adapter/local_database/models/local_data.dart';
+import 'package:app_teste_ifood/app/features/current_weather/data/models/current_weather_model.dart';
 
 abstract class ICurrentWeatherLocalDataSource {
-  Future<LocalData> getCurrentWeather(String cityName);
-  Future<void> saveCurrentWeather(String cityName, Map<String, dynamic> data);
+  Future<LocalData> getCurrentWeather(CurrentWeatherModel currentWeather);
+  Future<void> saveCurrentWeather(CurrentWeatherModel currentWeather);
 }
 
 class CurrentWeatherLocalDataSource implements ICurrentWeatherLocalDataSource {
@@ -20,8 +21,7 @@ class CurrentWeatherLocalDataSource implements ICurrentWeatherLocalDataSource {
 
   @override
   Future<void> saveCurrentWeather(
-    String cityName,
-    Map<String, dynamic> data,
+
   ) async {
     return await localDataManager.eraseAndAdd(
       store: 'current_weather_$cityName',

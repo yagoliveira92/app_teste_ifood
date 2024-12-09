@@ -24,8 +24,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "br.dev.yago.app_teste_ifood"
     ndkVersion = "25.1.8937393"
+    namespace = "br.dev.yago.app_teste_ifood"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

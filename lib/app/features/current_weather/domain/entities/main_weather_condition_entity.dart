@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:isar/isar.dart';
 
+part 'main_weather_condition_entity.g.dart';
+
+@Embedded(ignore: {'props'})
 class MainWeatherCondiditonEntity extends Equatable {
   final double? temp;
   final double? feelsLike;

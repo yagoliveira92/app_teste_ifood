@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:isar/isar.dart';
 
+part 'weather_entity.g.dart';
+
+@Embedded(ignore: {'props'})
 class WeatherEntity extends Equatable {
   final int? id;
   final String? main;
