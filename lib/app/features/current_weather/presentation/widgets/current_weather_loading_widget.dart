@@ -12,7 +12,8 @@ class CurrentWeatherLoadingWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+            ),
           ),
         ],
       ),

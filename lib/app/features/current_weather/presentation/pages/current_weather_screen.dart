@@ -35,9 +35,13 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
             CurrentWeatherLoading() => const CurrentWeatherLoadingWidget(),
             CurrentWeatherSuccess() => Scaffold(
                 appBar: AppBar(
-                  title: const Text('Current Weather'),
+                  title: const Text(
+                    'Current Weather',
+                    semanticsLabel: 'Appbar do Weather App',
+                  ),
                   actions: [
                     IconButton(
+                      tooltip: 'Buscar Cidade',
                       icon: const Icon(Icons.search),
                       onPressed: () {
                         showSearch(
@@ -52,6 +56,7 @@ class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
                   ],
                 ),
                 body: RefreshIndicator(
+                  semanticsLabel: 'Refresh',
                   onRefresh: () =>
                       context.read<CurrentWeatherCubit>().getCurrentWeather(),
                   child: ListView.builder(
